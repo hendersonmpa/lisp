@@ -28,7 +28,7 @@
      (if (not (y-or-n-p "Another? [y/n]: ")) (return))))
 
 (defun save-db (filename)
-  (with-open-file (out filename 
+  (with-open-file (out filename
                    :direction :output
                    :if-exists :supersede)
     (with-standard-io-syntax
@@ -57,7 +57,7 @@
 
 (defun update (selector-fn &key title artist rating (ripped nil ripped-p))
   (setf *db*
-        (mapcar 
+        (mapcar
          #'(lambda (row)
              (when (funcall selector-fn row)
                (if title    (setf (getf row :title) title))
@@ -68,6 +68,3 @@
 
 (defun delete-rows (selector-fn)
   (setf *db* (remove-if selector-fn *db*)))
-
-
-
