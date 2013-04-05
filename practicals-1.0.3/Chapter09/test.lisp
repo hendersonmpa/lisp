@@ -25,3 +25,19 @@ test functions or use `check' to run individual test cases."
   "Report the results of a single test case. Called by `check'."
   (format t "~:[FAIL~;pass~] ... ~a: ~a~%" result *test-name* form)
   result)
+
+(defun test-+ ()
+  (check
+    (= (+ 1 2) 3)
+    (= (+ 1 2 3) 6)
+    (= (+ -1 -3) -4)))
+
+(defun test-* ()
+  (check
+    (= (* 2 2) 4)
+    (= (* 3 5) 15)))
+
+(defun test-arithmetic ()
+  (combine-results
+    (test-+)
+    (test-*)))
